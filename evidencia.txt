@@ -1,0 +1,42 @@
+usuariomaira@Maii:~$ cd ServidorHTTP
+usuariomaira@Maii:~/ServidorHTTP$ ./demo-verbos-http.sh
+
+== 1. GET /tasks (empty list at startup) ==
+  PASS  GET /tasks returns 200  ->  200
+
+== 2. POST /tasks creates a task and assigns an id ==
+  PASS  POST /tasks returns 201  ->  201
+  PASS  the body returns the created task
+  PASS  the body includes an id
+
+== 3. A second POST creates another task with another id (POST is not idempotent) ==
+  PASS  POST /tasks returns 201  ->  201
+  PASS  each POST produces a different id  (1 and 2)
+
+== 4. GET /tasks returns the created tasks ==
+  PASS  GET /tasks returns 200  ->  200
+
+== 5. GET /tasks/1 returns the created task ==
+  PASS  GET /tasks/1 returns 200  ->  200
+  PASS  the body contains the original title
+
+== 6. PATCH /tasks/1 updates only the sent field ==
+  PASS  PATCH /tasks/1 returns 200  ->  200
+  PASS  done changed to true
+  PASS  the title is preserved (PATCH is partial)
+
+== 7. DELETE /tasks/1 deletes the task ==
+  PASS  DELETE /tasks/1 returns 200 or 204  ->  204
+
+== 8. GET /tasks/1 returns 404 after deletion ==
+  PASS  GET /tasks/1 returns 404  ->  404
+
+== 9. GET /tasks/999 (nonexistent) returns 404 ==
+  PASS  GET /tasks/999 returns 404  ->  404
+
+== Summary ==
+SUMMARY: PASS=15 FAIL=0
+All good! HTTP verbs are being used correctly.
+usuariomaira@Maii:~/ServidorHTTP$
+
+
