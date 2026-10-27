@@ -1,0 +1,8 @@
+Justificación de los Patrones de Diseño Seleccionados 
+Patrón Strategy:  
+Se utilizó este patrón para los diferentes tipos de proveedores de inteligencia 
+artificial que utilizaremos para generar respuestas automáticas a las preguntas que los 
+usuarios humanos publiquen, cada clase concreta implementa la interfaz pero por 
+dentro cada uno trabaja de diferente manera (cada uno conectará con su API). Esto 
+nos permite a futuro cambiar, actualizarse y ser escalable sin que afecte la lógica de la 
+plataforma. 
